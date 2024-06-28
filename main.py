@@ -14,6 +14,7 @@ def add_character(first_name, last_name, classes):
     finally:
         print("character added")
         cursor.close()
+        close_connection()
 def edit_character(first_name, last_name, classes, characters_id):
     cursor = get_cursor()
     try:
@@ -24,6 +25,7 @@ def edit_character(first_name, last_name, classes, characters_id):
     finally:
         print("character edited")
         cursor.close()
+        close_connection()
 def delete_character(characters_id):
     cursor = get_cursor()
     try:
@@ -34,6 +36,7 @@ def delete_character(characters_id):
     finally:
         print("character deleted")
         cursor.close()
+        close_connection()
 def add_combat(dice_roll, actual_roll, encounter_description, character_level, characters_id):
     cursor = get_cursor()
     try:
@@ -44,6 +47,7 @@ def add_combat(dice_roll, actual_roll, encounter_description, character_level, c
     finally:
         print("combat roll added")
         cursor.close()
+        close_connection()
 def edit_combat(dice_roll, actual_roll, encounter_description, character_level, combatroll_id):
     cursor = get_cursor()
     try:
@@ -54,6 +58,7 @@ def edit_combat(dice_roll, actual_roll, encounter_description, character_level, 
     finally:
         print("combat roll edited")
         cursor.close()
+        close_connection()
 def delete_combat(combatroll_id):
     cursor = get_cursor()
     try:
@@ -64,7 +69,7 @@ def delete_combat(combatroll_id):
     finally:
         print("combat roll deleted")
         cursor.close()
-
+        close_connection()
 #Prints all values in table by primary key number. Makes editing and deleting much easier
 def print_table(table_name, primary_key):
     cursor = get_cursor()
@@ -77,6 +82,7 @@ def print_table(table_name, primary_key):
         print(f"Error: {error}")
     finally:
         cursor.close()
+        close_connection()
 if __name__ == '__main__':
     while(True):
         print("Main Menu")
