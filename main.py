@@ -58,6 +58,8 @@ def delete_combat(combatroll_id):
         print(f"Error: {error}")
     finally:
         cursor.close()
+
+#Prints all values in table by primary key number. Makes editing and deleting much easier
 def print_table(table_name, primary_key):
     cursor = get_cursor()
     try:
@@ -86,12 +88,14 @@ if __name__ == '__main__':
             className = input("Enter class name: ")
             add_character(firstName, lastName, className)
         if(choice == "2"):
+            print_table('characters', 'characters_id')
             firstName = input("Enter new first name: ")
             lastName = input("Enter new last name: ")
             className = input("Enter new class name: ")
             characters_id = input("Enter characters id: ")
             edit_character(firstName, lastName, className, characters_id)
         if(choice == "3"):
+            print_table('characters', 'characters_id')
             print_table('characters')
             characters_id = input("Enter characters id: ")
             delete_character(characters_id)
@@ -103,6 +107,7 @@ if __name__ == '__main__':
             charactersID = input("Enter characters id: ")
             add_combat(diceRoll, actualRoll, encounterDescription, characterLevel)
         if(choice == "5"):
+            print_table('combat_rolls', 'combatroll_id')
             diceRoll = input("Enter new dice roll: ")
             actualRoll = input("Enter new actual roll: ")
             encounterDescription = input("Enter new encounter description: ")
@@ -110,6 +115,7 @@ if __name__ == '__main__':
             charactersID = input("Enter new characters id: ")
             edit_combat(diceRoll, actualRoll, encounterDescription, characterLevel, charactersID)
         if(choice == "6"):
+            print_table('combat_rolls', 'combatroll_id')
             combatRoll_id = input("Enter combat roll id: ")
             delete_combat(combatRoll_id)
         if(choice == "7"):
