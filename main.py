@@ -1,7 +1,7 @@
 import psycopg2
 
 from dbConnection import get_cursor, close_connection, get_conn
-#TODO PUT ON GITHUB update rest of functions and reset Primary keys to 1, get edit and delete functions to print each row with corresponding ID for edit or deletion
+#TODO update rest of functions and reset Primary keys to 1, get edit and delete functions to print each row with corresponding ID for edit or deletion
 
 def add_character(first_name, last_name, classes):
     cursor = get_cursor()
@@ -58,11 +58,13 @@ def delete_combat(combatroll_id):
         print(f"Error: {error}")
     finally:
         cursor.close()
-def print_table(table_name):
+def print_table(table_name, primary_key):
     cursor = get_cursor()
     try:
-        cursor.execute("SELECT * FROM " + table_name)
-        get_conn().commit()
+        cursor.execute("SELECT * FROM " + table_name + " ORDER BY " + primary_key)
+        results = cursor.fetchall()
+        for row in results:
+            print(row)
     except (Exception, psycopg2.DatabaseError) as error:
         print(f"Error: {error}")
     finally:
