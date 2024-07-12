@@ -1,8 +1,8 @@
 import psycopg2
 
 from dbConnection import get_cursor, close_connection, get_conn
-#TODO update rest of functions and reset Primary keys to 1, get edit and delete functions to print each row with corresponding ID for edit or deletion
 
+#Add character to the database
 def add_character(first_name, last_name, classes):
     cursor = get_cursor()
     try:
@@ -15,6 +15,8 @@ def add_character(first_name, last_name, classes):
         print("character added")
         cursor.close()
         close_connection()
+
+#Edit character in database
 def edit_character(first_name, last_name, classes, characters_id):
     cursor = get_cursor()
     try:
@@ -26,6 +28,8 @@ def edit_character(first_name, last_name, classes, characters_id):
         print("character edited")
         cursor.close()
         close_connection()
+
+#Delete character in database
 def delete_character(characters_id):
     cursor = get_cursor()
     try:
@@ -37,6 +41,8 @@ def delete_character(characters_id):
         print("character deleted")
         cursor.close()
         close_connection()
+
+#Add combat encounter to database
 def add_combat(dice_roll, actual_roll, encounter_description, character_level, characters_id):
     cursor = get_cursor()
     try:
@@ -48,6 +54,8 @@ def add_combat(dice_roll, actual_roll, encounter_description, character_level, c
         print("combat roll added")
         cursor.close()
         close_connection()
+
+#Edit combat encounter in database
 def edit_combat(dice_roll, actual_roll, encounter_description, character_level, combatroll_id):
     cursor = get_cursor()
     try:
@@ -59,6 +67,8 @@ def edit_combat(dice_roll, actual_roll, encounter_description, character_level, 
         print("combat roll edited")
         cursor.close()
         close_connection()
+
+#Delete combat encounter in database
 def delete_combat(combatroll_id):
     cursor = get_cursor()
     try:
@@ -70,7 +80,7 @@ def delete_combat(combatroll_id):
         print("combat roll deleted")
         cursor.close()
         close_connection()
-#Prints all values in table by primary key number. Makes editing and deleting much easier
+#Print all values in table by primary key number. Makes editing and deleting much easier
 def print_table(table_name, primary_key):
     cursor = get_cursor()
     try:
@@ -131,4 +141,4 @@ if __name__ == '__main__':
             delete_combat(combatRoll_id)
         if(choice == "7"):
             close_connection()
-            break;
+            break
